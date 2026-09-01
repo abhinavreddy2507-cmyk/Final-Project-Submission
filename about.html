@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Turning Leaves</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{
+            --bg:#F1E8D4; --surface:#FAF5E9; --brand:#1E4A44; --brand-hover:#16332F;
+            --accent:#B08A3E; --accent-hover:#8F6F2E; --text:#211D16; --text-muted:#6B6153;
+            --border:#D9CBA3; --footer-bg:#1B1712;
+        }
+        .dark{
+            --bg:#17140F; --surface:#211C15; --brand:#4C9186; --brand-hover:#63A99D;
+            --accent:#D4B26A; --accent-hover:#E4C685; --text:#F1E8D4; --text-muted:#B3A78D;
+            --border:#3A3427; --footer-bg:#0E0C09;
+        }
+        body{background-color:var(--bg);}
+        .font-display{font-family:'Fraunces',serif;}
+        .font-body{font-family:'Work Sans',sans-serif;}
+        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background-color:var(--brand);color:var(--surface);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--brand);transition:background-color .25s ease,border-color .25s ease,color .25s ease;}
+        .btn-primary:hover{background-color:var(--accent);border-color:var(--accent);color:var(--text);}
+        .btn-outline{display:inline-flex;align-items:center;gap:.5rem;background-color:transparent;color:var(--text);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--text);transition:background-color .25s ease,color .25s ease;}
+        .btn-outline:hover{background-color:var(--text);color:var(--bg);}
+        .btn-inverse{display:inline-flex;align-items:center;gap:.5rem;background-color:transparent;color:var(--bg);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--bg);transition:background-color .25s ease,color .25s ease;}
+        .btn-inverse:hover{background-color:var(--bg);color:var(--brand);}
+        .cover-frame{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--brand) 0%,var(--border) 100%);}
+        .dark .cover-frame{background:linear-gradient(160deg,var(--brand) 0%,#2a2a22 100%);}
+        .cover-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font-family:'Fraunces',serif;font-size:.95rem;color:var(--surface);opacity:.92;line-height:1.3;}
+        .nav-link{position:relative;padding-bottom:2px;}
+        .nav-link::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background-color:var(--accent);transition:width .25s ease;}
+        .nav-link:hover::after{width:100%;}
+        .stat-num{font-variant-numeric:oldstyle-nums;}
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: 'var(--bg)', linen: 'var(--surface)', ink: 'var(--text)',
+                        muted: 'var(--text-muted)', line: 'var(--border)', teal: 'var(--brand)',
+                        tealdark: 'var(--brand-hover)', brass: 'var(--accent)', brassdark: 'var(--accent-hover)',
+                        footer: 'var(--footer-bg)'
+                    },
+                    fontFamily: { display: ['Fraunces','serif'], body: ['"Work Sans"','sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body text-ink bg-parchment">
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="bg-teal text-parchment text-xs">
+            <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+                <span class="hidden sm:inline">An independent bookshop in Dehradun</span>
+                <span class="sm:hidden">Dehradun, India</span>
+                <span>Mon&ndash;Sat 10am&ndash;7pm &middot; Sun 11am&ndash;5pm</span>
+            </div>
+        </div>
+        <nav class="bg-linen border-b border-line">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="index.html" class="flex items-center text-2xl font-display font-semibold text-ink">
+                    <i class="fa-solid fa-feather-pointed text-brass text-xl mr-2"></i>Turning Leaves
+                </a>
+                <div class="hidden md:flex space-x-8 items-center font-body">
+                    <a href="index.html" class="nav-link text-ink font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-ink font-medium">About Us</a>
+                    <a href="contact.html" class="nav-link text-ink font-medium">Contact</a>
+                    <button id="theme-toggle" class="w-9 h-9 flex items-center justify-center border border-line rounded-full text-ink hover:border-brass hover:text-brass transition-colors" aria-label="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                </div>
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="w-9 h-9 flex items-center justify-center border border-line rounded-full text-ink" aria-label="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    <button id="mobile-menu-button" class="text-ink"><i class="fas fa-bars text-2xl"></i></button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-linen border-t border-line">
+                <div class="container mx-auto px-4 py-4 flex flex-col space-y-4 font-body">
+                    <a href="index.html" class="text-ink font-medium">Home</a>
+                    <a href="about.html" class="text-ink font-medium">About Us</a>
+                    <a href="contact.html" class="text-ink font-medium">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="bg-teal text-parchment pt-32 md:pt-36 pb-16">
+        <div class="container mx-auto px-4">
+            <h1 class="font-display text-4xl md:text-5xl font-semibold">Our Story</h1>
+            <p class="mt-3 text-parchment/80 max-w-xl">How a shelf of borrowed books became a shop the whole neighbourhood reads from.</p>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-28">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="cover-frame aspect-[3/4] border border-line">
+                        <span class="cover-fallback">Ananya Rawat, Founder</span>
+                        <img src="img/founder-ananya-rawat.jpg" alt="Ananya Rawat, founder of Turning Leaves, standing among the shop's shelves" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold text-ink mb-6">A passion for books</h2>
+                    <p class="text-muted mb-4 leading-relaxed">Founded by book lover Ananya Rawat, Turning Leaves began with a simple mission: to share the joy and wonder of a good story. What started as a personal passion in the beautiful city of Dehradun has blossomed into a cherished local business.</p>
+                    <p class="text-muted mb-4 leading-relaxed">Our philosophy is rooted in curation and care. We believe that every book has a story of its own and a reader waiting to discover it. We carefully select titles across genres and give our customers thoughtful recommendations to help them find their next favourite read.</p>
+                    <p class="text-muted leading-relaxed">From our humble beginnings, Turning Leaves has grown into a community hub for book lovers, dedicated to making Dehradun a more well-read, story-filled place, one book at a time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-linen border-y border-line">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-line text-center">
+                <div class="p-6">
+                    <h3 class="stat-num font-display text-5xl mb-2 text-brass">500+</h3>
+                    <p class="text-muted text-lg">Book Titles</p>
+                </div>
+                <div class="p-6">
+                    <h3 class="stat-num font-display text-5xl mb-2 text-brass">1,000+</h3>
+                    <p class="text-muted text-lg">Happy Readers</p>
+                </div>
+                <div class="p-6">
+                    <h3 class="stat-num font-display text-5xl mb-2 text-brass">5</h3>
+                    <p class="text-muted text-lg">Years of Great Reads</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-footer text-parchment/80 py-14">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Opening Hours</h3>
+                    <p>Monday &ndash; Saturday: 10am &ndash; 7pm</p>
+                    <p>Sunday: 11am &ndash; 5pm</p>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-brass transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brass transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-brass transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Follow Us</h3>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 pt-8 border-t border-parchment/10 text-center text-sm">
+                <p>&copy; 2025 Turning Leaves. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const htmlElement=document.documentElement,themeToggle=document.getElementById("theme-toggle"),themeToggleMobile=document.getElementById("theme-toggle-mobile");
+        function applyTheme(e){"dark"===e||null===e&&window.matchMedia("(prefers-color-scheme: dark)").matches?htmlElement.classList.add("dark"):htmlElement.classList.remove("dark")}
+        applyTheme(localStorage.getItem("theme"));
+        function toggleTheme(){htmlElement.classList.contains("dark")?(htmlElement.classList.remove("dark"),localStorage.setItem("theme","light")):(htmlElement.classList.add("dark"),localStorage.setItem("theme","dark"))}
+        themeToggle&&themeToggle.addEventListener("click",toggleTheme),themeToggleMobile&&themeToggleMobile.addEventListener("click",toggleTheme);
+        const mobileMenuButton=document.getElementById("mobile-menu-button"),mobileMenu=document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click",(()=>{mobileMenu.classList.toggle("hidden")}));
+    </script>
+</body>
+</html>

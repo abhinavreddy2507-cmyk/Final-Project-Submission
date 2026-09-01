@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Turning Leaves</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{
+            --bg:#F1E8D4; --surface:#FAF5E9; --brand:#1E4A44; --brand-hover:#16332F;
+            --accent:#B08A3E; --accent-hover:#8F6F2E; --text:#211D16; --text-muted:#6B6153;
+            --border:#D9CBA3; --footer-bg:#1B1712;
+        }
+        .dark{
+            --bg:#17140F; --surface:#211C15; --brand:#4C9186; --brand-hover:#63A99D;
+            --accent:#D4B26A; --accent-hover:#E4C685; --text:#F1E8D4; --text-muted:#B3A78D;
+            --border:#3A3427; --footer-bg:#0E0C09;
+        }
+        body{background-color:var(--bg);}
+        .font-display{font-family:'Fraunces',serif;}
+        .font-body{font-family:'Work Sans',sans-serif;}
+        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background-color:var(--brand);color:var(--surface);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--brand);transition:background-color .25s ease,border-color .25s ease,color .25s ease;}
+        .btn-primary:hover{background-color:var(--accent);border-color:var(--accent);color:var(--text);}
+        .nav-link{position:relative;padding-bottom:2px;}
+        .nav-link::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background-color:var(--accent);transition:width .25s ease;}
+        .nav-link:hover::after{width:100%;}
+        .field-input{width:100%;background-color:transparent;border:none;border-bottom:1.5px solid var(--border);padding:.6rem .1rem;color:var(--text);transition:border-color .2s ease;}
+        .field-input:focus{outline:none;border-bottom-color:var(--brand);}
+        .field-label{display:block;font-family:'Work Sans',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.02em;color:var(--text-muted);margin-bottom:.4rem;}
+        .icon-badge{width:2.5rem;height:2.5rem;border-radius:9999px;border:1.5px solid var(--brand);color:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .dark .icon-badge{border-color:var(--accent);color:var(--accent);}
+        .map-frame{border:1px solid var(--border);filter:sepia(.15) saturate(.85);}
+        .dark .map-frame{filter:sepia(.25) saturate(.7) brightness(.85) invert(.92) hue-rotate(180deg);}
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: 'var(--bg)', linen: 'var(--surface)', ink: 'var(--text)',
+                        muted: 'var(--text-muted)', line: 'var(--border)', teal: 'var(--brand)',
+                        tealdark: 'var(--brand-hover)', brass: 'var(--accent)', brassdark: 'var(--accent-hover)',
+                        footer: 'var(--footer-bg)'
+                    },
+                    fontFamily: { display: ['Fraunces','serif'], body: ['"Work Sans"','sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body text-ink bg-parchment">
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="bg-teal text-parchment text-xs">
+            <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+                <span class="hidden sm:inline">An independent bookshop in Dehradun</span>
+                <span class="sm:hidden">Dehradun, India</span>
+                <span>Mon&ndash;Sat 10am&ndash;7pm &middot; Sun 11am&ndash;5pm</span>
+            </div>
+        </div>
+        <nav class="bg-linen border-b border-line">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="index.html" class="flex items-center text-2xl font-display font-semibold text-ink">
+                    <i class="fa-solid fa-feather-pointed text-brass text-xl mr-2"></i>Turning Leaves
+                </a>
+                <div class="hidden md:flex space-x-8 items-center font-body">
+                    <a href="index.html" class="nav-link text-ink font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-ink font-medium">About Us</a>
+                    <a href="contact.html" class="nav-link text-ink font-medium">Contact</a>
+                    <button id="theme-toggle" class="w-9 h-9 flex items-center justify-center border border-line rounded-full text-ink hover:border-brass hover:text-brass transition-colors" aria-label="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                </div>
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="w-9 h-9 flex items-center justify-center border border-line rounded-full text-ink" aria-label="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    <button id="mobile-menu-button" class="text-ink"><i class="fas fa-bars text-2xl"></i></button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-linen border-t border-line">
+                <div class="container mx-auto px-4 py-4 flex flex-col space-y-4 font-body">
+                    <a href="index.html" class="text-ink font-medium">Home</a>
+                    <a href="about.html" class="text-ink font-medium">About Us</a>
+                    <a href="contact.html" class="text-ink font-medium">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="pt-32 md:pt-36 pb-20">
+        <div class="container mx-auto px-4">
+            <h1 class="font-display text-4xl md:text-5xl font-semibold mb-2">Get in touch</h1>
+            <p class="text-muted max-w-xl mb-12">Questions about a title, an order, or just want to say hello &mdash; we'd love to hear from you.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                <div class="bg-linen p-8 border border-line">
+                    <h2 class="font-display text-2xl mb-6 text-ink">Send us a message</h2>
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="field-label">Name</label>
+                            <input type="text" id="name" name="name" required class="field-input">
+                        </div>
+                        <div>
+                            <label for="email" class="field-label">Email</label>
+                            <input type="email" id="email" name="email" required class="field-input">
+                        </div>
+                        <div>
+                            <label for="subject" class="field-label">Subject</label>
+                            <select id="subject" name="subject" required class="field-input">
+                                <option value="">Select a subject</option>
+                                <option value="inquiry">Book Inquiry</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="general">General Question</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="field-label">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="field-input"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full justify-center">Send Message</button>
+                    </form>
+                </div>
+                <div class="space-y-8">
+                    <div class="h-80 overflow-hidden map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112395.0298379435!2d77.8188151!3d30.2974415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929c356c80877%3A0x6d90a1b65b6f3a74!2sDehradun%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1714801127716!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="bg-linen p-8 border border-line">
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="icon-badge"><i class="fas fa-map-marker-alt"></i></div>
+                                <div><h3 class="font-display text-lg text-ink">Address</h3><p class="text-muted">Rajpur Road,<br>Dehradun, Uttarakhand, India</p></div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="icon-badge"><i class="fas fa-phone"></i></div>
+                                <div><h3 class="font-display text-lg text-ink">Phone</h3><p class="text-muted">+91 6397636269</p></div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="icon-badge"><i class="fas fa-envelope"></i></div>
+                                <div><h3 class="font-display text-lg text-ink">Email</h3><p class="text-muted">contact@turningleaves.com</p></div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="icon-badge"><i class="fas fa-clock"></i></div>
+                                <div><h3 class="font-display text-lg text-ink">Opening Hours</h3><p class="text-muted">Mon &ndash; Sat: 10am &ndash; 7pm<br>Sun: 11am &ndash; 5pm</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-footer text-parchment/80 py-14">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Opening Hours</h3>
+                    <p>Monday &ndash; Saturday: 10am &ndash; 7pm</p>
+                    <p>Sunday: 11am &ndash; 5pm</p>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-brass transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brass transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-brass transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Follow Us</h3>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 pt-8 border-t border-parchment/10 text-center text-sm">
+                <p>&copy; 2025 Turning Leaves. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const htmlElement=document.documentElement,themeToggle=document.getElementById("theme-toggle"),themeToggleMobile=document.getElementById("theme-toggle-mobile");
+        function applyTheme(e){"dark"===e||null===e&&window.matchMedia("(prefers-color-scheme: dark)").matches?htmlElement.classList.add("dark"):htmlElement.classList.remove("dark")}
+        applyTheme(localStorage.getItem("theme"));
+        function toggleTheme(){htmlElement.classList.contains("dark")?(htmlElement.classList.remove("dark"),localStorage.setItem("theme","light")):(htmlElement.classList.add("dark"),localStorage.setItem("theme","dark"))}
+        themeToggle&&themeToggle.addEventListener("click",toggleTheme),themeToggleMobile&&themeToggleMobile.addEventListener("click",toggleTheme);
+        const mobileMenuButton=document.getElementById("mobile-menu-button"),mobileMenu=document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click",(()=>{mobileMenu.classList.toggle("hidden")}));
+    </script>
+</body>
+</html>

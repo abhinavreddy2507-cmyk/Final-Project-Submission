@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turning Leaves — Independent Bookshop in Dehradun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        :root{
+            --bg:#F1E8D4; --surface:#FAF5E9; --brand:#1E4A44; --brand-hover:#16332F;
+            --accent:#B08A3E; --accent-hover:#8F6F2E; --text:#211D16; --text-muted:#6B6153;
+            --border:#D9CBA3; --footer-bg:#1B1712;
+        }
+        .dark{
+            --bg:#17140F; --surface:#211C15; --brand:#4C9186; --brand-hover:#63A99D;
+            --accent:#D4B26A; --accent-hover:#E4C685; --text:#F1E8D4; --text-muted:#B3A78D;
+            --border:#3A3427; --footer-bg:#0E0C09;
+        }
+        body{background-color:var(--bg);}
+        .font-display{font-family:'Fraunces',serif;}
+        .font-body{font-family:'Work Sans',sans-serif;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+        .hero-reveal{opacity:0;animation:fadeIn .9s ease-out forwards;}
+        .hero-reveal.delay-1{animation-delay:.15s;}
+        .hero-reveal.delay-2{animation-delay:.3s;}
+        .hero-reveal.delay-3{animation-delay:.45s;}
+        .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background-color:var(--brand);color:var(--surface);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--brand);transition:background-color .25s ease,border-color .25s ease,color .25s ease;}
+        .btn-primary:hover{background-color:var(--accent);border-color:var(--accent);color:var(--text);}
+        .btn-outline{display:inline-flex;align-items:center;gap:.5rem;background-color:transparent;color:var(--text);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--text);transition:background-color .25s ease,color .25s ease;}
+        .btn-outline:hover{background-color:var(--text);color:var(--bg);}
+        .btn-inverse{display:inline-flex;align-items:center;gap:.5rem;background-color:transparent;color:var(--bg);font-family:'Work Sans',sans-serif;font-weight:600;font-size:.95rem;padding:.85rem 1.75rem;border-radius:2px;border:1.5px solid var(--bg);transition:background-color .25s ease,color .25s ease;}
+        .btn-inverse:hover{background-color:var(--bg);color:var(--brand);}
+        .cover-frame{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--brand) 0%,var(--border) 100%);}
+        .dark .cover-frame{background:linear-gradient(160deg,var(--brand) 0%,#2a2a22 100%);}
+        .cover-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font-family:'Fraunces',serif;font-size:.95rem;color:var(--surface);opacity:.92;line-height:1.3;}
+        .price-tag{position:absolute;top:.65rem;right:.65rem;background:var(--surface);border:1px dashed var(--accent);color:var(--accent-hover);font-family:'Fraunces',serif;font-weight:600;font-size:.8rem;padding:.2rem .55rem;border-radius:2px;transform:rotate(-4deg);}
+        .dark .price-tag{color:var(--accent);}
+        .swiper-button-next,.swiper-button-prev{color:var(--surface);background-color:var(--brand);border-radius:2px;width:40px;height:40px;box-shadow:none;}
+        .swiper-button-next:after,.swiper-button-prev:after{font-size:15px;font-weight:700;}
+        input,select,textarea{font-family:'Work Sans',sans-serif;}
+        .nav-link{position:relative;padding-bottom:2px;}
+        .nav-link::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background-color:var(--accent);transition:width .25s ease;}
+        .nav-link:hover::after{width:100%;}
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: 'var(--bg)', linen: 'var(--surface)', ink: 'var(--text)',
+                        muted: 'var(--text-muted)', line: 'var(--border)', teal: 'var(--brand)',
+                        tealdark: 'var(--brand-hover)', brass: 'var(--accent)', brassdark: 'var(--accent-hover)',
+                        footer: 'var(--footer-bg)'
+                    },
+                    fontFamily: { display: ['Fraunces','serif'], body: ['"Work Sans"','sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body text-ink bg-parchment">
+
+    <header class="fixed top-0 left-0 w-full z-50">
+        <div class="bg-teal text-parchment text-xs">
+            <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+                <span class="hidden sm:inline">An independent bookshop in Dehradun</span>
+                <span class="sm:hidden">Dehradun, India</span>
+                <span>Mon&ndash;Sat 10am&ndash;7pm &middot; Sun 11am&ndash;5pm</span>
+            </div>
+        </div>
+        <nav class="bg-linen border-b border-line">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="index.html" class="flex items-center text-2xl font-display font-semibold text-ink">
+                    <i class="fa-solid fa-feather-pointed text-brass text-xl mr-2"></i>Turning Leaves
+                </a>
+                <div class="hidden md:flex space-x-8 items-center font-body">
+                    <a href="index.html" class="nav-link text-ink font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-ink font-medium">About Us</a>
+                    <a href="contact.html" class="nav-link text-ink font-medium">Contact</a>
+                    <button id="theme-toggle" class="w-9 h-9 flex items-center justify-center border border-line rounded-full text-ink hover:border-brass hover:text-brass transition-colors" aria-label="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                </div>
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="w-9 h-9 flex items-center justify-center border border-line rounded-full text-ink" aria-label="Toggle dark mode"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    <button id="mobile-menu-button" class="text-ink"><i class="fas fa-bars text-2xl"></i></button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-linen border-t border-line">
+                <div class="container mx-auto px-4 py-4 flex flex-col space-y-4 font-body">
+                    <a href="index.html" class="text-ink font-medium">Home</a>
+                    <a href="about.html" class="text-ink font-medium">About Us</a>
+                    <a href="contact.html" class="text-ink font-medium">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="pt-32 md:pt-36 pb-20 md:pb-28">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div>
+                    <h1 class="hero-reveal font-display font-semibold text-ink leading-[1.05]" style="font-size:clamp(2.75rem,6vw,4.75rem);">Turning Leaves</h1>
+                    <p class="hero-reveal delay-1 mt-6 text-lg text-muted max-w-md leading-relaxed">A small, well-loved bookshop stacked floor to ceiling with stories worth staying up for &mdash; tucked into a quiet corner of Dehradun.</p>
+                    <div class="hero-reveal delay-2 mt-8 flex flex-wrap gap-4">
+                        <a href="#shelves" class="btn-primary">Browse the shelves</a>
+                        <a href="contact.html" class="btn-outline">Visit us</a>
+                    </div>
+                </div>
+                <div class="hero-reveal delay-3 relative">
+                    <div class="hidden md:block absolute -inset-6 bg-teal -z-10"></div>
+                    <div class="cover-frame aspect-[3/4] border border-line">
+                        <span class="cover-fallback">Inside Turning Leaves</span>
+                        <img src="img/hero-shop-interior.jpg" alt="Tall wooden bookshelves and a skylight inside Turning Leaves bookshop" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shelves" class="py-20 md:py-28 bg-linen border-y border-line">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mb-12">
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-ink">On the shelves this week</h2>
+                <p class="mt-3 text-muted">Five titles our booksellers keep pressing into customers' hands.</p>
+            </div>
+            <div class="swiper-container relative">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide p-2">
+                        <div class="group">
+                            <div class="cover-frame aspect-[2/3] border border-line">
+                                <span class="cover-fallback">The Quiet Hours</span>
+                                <img src="img/book-the-quiet-hours.jpg" alt="Cover of The Quiet Hours by Priya Sen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" onerror="this.style.display='none'">
+                                <span class="price-tag">₹399</span>
+                            </div>
+                            <h3 class="mt-4 font-display text-xl text-ink">The Quiet Hours</h3>
+                            <p class="text-sm text-muted">by Priya Sen</p>
+                            <p class="mt-2 text-sm text-muted leading-relaxed">A gentle, character-driven novel about second chances and the small moments that change a life.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide p-2">
+                        <div class="group">
+                            <div class="cover-frame aspect-[2/3] border border-line">
+                                <span class="cover-fallback">River of Stars</span>
+                                <img src="img/book-river-of-stars.jpg" alt="Cover of River of Stars by Owen Marsh" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" onerror="this.style.display='none'">
+                                <span class="price-tag">₹449</span>
+                            </div>
+                            <h3 class="mt-4 font-display text-xl text-ink">River of Stars</h3>
+                            <p class="text-sm text-muted">by Owen Marsh</p>
+                            <p class="mt-2 text-sm text-muted leading-relaxed">A sweeping fantasy adventure following a young cartographer who charts a world no map has ever shown.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide p-2">
+                        <div class="group">
+                            <div class="cover-frame aspect-[2/3] border border-line">
+                                <span class="cover-fallback">Better by Design</span>
+                                <img src="img/book-better-by-design.jpg" alt="Cover of Better by Design by Nikhil Rao" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" onerror="this.style.display='none'">
+                                <span class="price-tag">₹549</span>
+                            </div>
+                            <h3 class="mt-4 font-display text-xl text-ink">Better by Design</h3>
+                            <p class="text-sm text-muted">by Nikhil Rao</p>
+                            <p class="mt-2 text-sm text-muted leading-relaxed">A practical, engaging guide to building habits and routines that actually stick.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide p-2">
+                        <div class="group">
+                            <div class="cover-frame aspect-[2/3] border border-line">
+                                <span class="cover-fallback">The Last Orchard</span>
+                                <img src="img/book-the-last-orchard.jpg" alt="Cover of The Last Orchard by Claire Whitfield" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" onerror="this.style.display='none'">
+                                <span class="price-tag">₹379</span>
+                            </div>
+                            <h3 class="mt-4 font-display text-xl text-ink">The Last Orchard</h3>
+                            <p class="text-sm text-muted">by Claire Whitfield</p>
+                            <p class="mt-2 text-sm text-muted leading-relaxed">A quiet, moving family saga set across three generations of an orchard-keeping family.</p>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide p-2">
+                        <div class="group">
+                            <div class="cover-frame aspect-[2/3] border border-line">
+                                <span class="cover-fallback">Mystery of Pine Hollow</span>
+                                <img src="img/book-mystery-of-pine-hollow.jpg" alt="Cover of Mystery of Pine Hollow by Devika Nair" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" onerror="this.style.display='none'">
+                                <span class="price-tag">₹329</span>
+                            </div>
+                            <h3 class="mt-4 font-display text-xl text-ink">Mystery of Pine Hollow</h3>
+                            <p class="text-sm text-muted">by Devika Nair</p>
+                            <p class="mt-2 text-sm text-muted leading-relaxed">A cosy small-town mystery full of twists, warm characters, and a detective who loves her tea.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-teal text-parchment py-20 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-2">
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold">Find your perfect read</h2>
+                    <p class="mt-3 text-parchment/80 max-w-xl leading-relaxed">Come browse in person, or get in touch and tell us what you've loved before &mdash; our booksellers are happy to put a stack together for you.</p>
+                </div>
+                <div class="md:text-right">
+                    <a href="contact.html" class="btn-inverse">Get in touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-footer text-parchment/80 py-14">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Opening Hours</h3>
+                    <p>Monday &ndash; Saturday: 10am &ndash; 7pm</p>
+                    <p>Sunday: 11am &ndash; 5pm</p>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-brass transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brass transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-brass transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg mb-4 text-parchment">Follow Us</h3>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-facebook-f text-lg"></i></a>
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="hover:text-brass transition-colors"><i class="fab fa-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 pt-8 border-t border-parchment/10 text-center text-sm">
+                <p>&copy; 2025 Turning Leaves. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const htmlElement=document.documentElement,themeToggle=document.getElementById("theme-toggle"),themeToggleMobile=document.getElementById("theme-toggle-mobile");
+        function applyTheme(e){"dark"===e||null===e&&window.matchMedia("(prefers-color-scheme: dark)").matches?htmlElement.classList.add("dark"):htmlElement.classList.remove("dark")}
+        applyTheme(localStorage.getItem("theme"));
+        function toggleTheme(){htmlElement.classList.contains("dark")?(htmlElement.classList.remove("dark"),localStorage.setItem("theme","light")):(htmlElement.classList.add("dark"),localStorage.setItem("theme","dark"))}
+        themeToggle&&themeToggle.addEventListener("click",toggleTheme),themeToggleMobile&&themeToggleMobile.addEventListener("click",toggleTheme);
+        const mobileMenuButton=document.getElementById("mobile-menu-button"),mobileMenu=document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click",(()=>{mobileMenu.classList.toggle("hidden")}));
+        const swiper=new Swiper(".swiper-container",{loop:!0,slidesPerView:1,spaceBetween:20,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},breakpoints:{640:{slidesPerView:2,spaceBetween:20},1024:{slidesPerView:3,spaceBetween:30}}});
+    </script>
+</body>
+</html>
